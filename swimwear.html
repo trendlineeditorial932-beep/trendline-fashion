@@ -21,7 +21,13 @@
 .swim-heading p{max-width:390px;color:#62615b;line-height:1.7;font-size:.9rem}
 .swim-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
 .swim-card{background:#fffdf7;overflow:hidden;min-width:0}
-.swim-card a.photo{display:block;overflow:hidden;background:#ddd}
+..swim-card a.photo{
+  display:block;
+  overflow:hidden;
+  background:#ddd;
+  pointer-events:none;
+  cursor:default;
+}
 .swim-card img{width:100%;height:500px;object-fit:cover;display:block;transition:transform .55s ease}
 .swim-card:hover img{transform:scale(1.035)}
 .swim-card-info{padding:20px 22px 24px}
@@ -119,7 +125,6 @@ explore different swimwear designs and their surroundings.
 <div class="swim-kicker">01 / WHITE COLLECTION</div>
 <h3>Clean in white.</h3>
 <p>A fresh, minimal summer look framed by the water.</p>
-<div class="swim-credit">Photography: Ddddddarya / Unsplash</div>
 </div>
 </article>
 
@@ -131,7 +136,6 @@ explore different swimwear designs and their surroundings.
 <div class="swim-kicker">02 / PRINT COLLECTION</div>
 <h3>Wild patterns.</h3>
 <p>Animal-inspired prints bring a bold graphic element to swimwear design.</p>
-<div class="swim-credit">Photography: Cheyenne Doig / Unsplash</div>
 </div>
 </article>
 
@@ -161,7 +165,6 @@ that define a summer collection.
 <div class="swim-kicker">03 / COASTAL COLLECTION</div>
 <h3>Coastal perspective.</h3>
 <p>A beach-inspired editorial scene with a relaxed summer atmosphere.</p>
-<div class="swim-credit">Photography: Raymond Petrik / Unsplash</div>
 </div>
 </article>
 
