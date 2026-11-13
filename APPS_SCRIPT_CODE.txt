@@ -1,0 +1,89 @@
+/************************************************************
+ * TRENDLINE — RESEARCH COLLECTION + APPROVED ARTICLE FEED
+ * Research links stay private in Stories.
+ * Only original Articles marked Approved are public.
+ ************************************************************/
+const CONFIG = {
+  STORIES_SHEET: "Stories",
+  ARTICLES_SHEET: "Articles",
+  FEEDS: [
+    { category: "General", url: "https://news.google.com/rss/search?q=fashion+trends&hl=en-IN&gl=IN&ceid=IN:en" },
+    { category: "Streetwear", url: "https://news.google.com/rss/search?q=streetwear+fashion&hl=en-IN&gl=IN&ceid=IN:en" },
+    { category: "Swimwear", url: "https://news.google.com/rss/search?q=swimwear+fashion&hl=en-IN&gl=IN&ceid=IN:en" },
+    { category: "Luxury", url: "https://news.google.com/rss/search?q=luxury+fashion&hl=en-IN&gl=IN&ceid=IN:en" },
+    { category: "Sportswear", url: "https://news.google.com/rss/search?q=sportswear+fashion&hl=en-IN&gl=IN&ceid=IN:en" },
+    { category: "Casualwear", url: "https://news.google.com/rss/search?q=casual+fashion+trends&hl=en-IN&gl=IN&ceid=IN:en" },
+    { category: "Formalwear", url: "https://news.google.com/rss/search?q=formalwear+fashion+trends&hl=en-IN&gl=IN&ceid=IN:en" },
+    { category: "Sustainable", url: "https://news.google.com/rss/search?q=sustainable+fashion&hl=en-IN&gl=IN&ceid=IN:en" },
+    { category: "Vintage", url: "https://news.google.com/rss/search?q=vintage+fashion+trends&hl=en-IN&gl=IN&ceid=IN:en" },
+    { category: "Accessories", url: "https://news.google.com/rss/search?q=fashion+accessories+trends&hl=en-IN&gl=IN&ceid=IN:en" },
+    { category: "Lingerie", url: "https://news.google.com/rss/search?q=lingerie+fashion+design+textiles&hl=en-IN&gl=IN&ceid=IN:en" }
+  ]
+};
+function setupTrendline() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  if (!ss) throw new Error("Open Apps Script from TRENDLINE Editorial using Extensions > Apps Script.");
+  let stories = ss.getSheetByName(CONFIG.STORIES_SHEET);
+  if (!stories) stories = ss.insertSheet(CONFIG.STORIES_SHEET);
+  const storyHeaders = ["Title","Source","Link","Published","Research Note","Status","Category"];
+  if (stories.getLastRow() === 0) stories.appendRow(storyHeaders);
+  else if (!stories.getRange(1,1,1,stories.getLastColumn()).getDisplayValues()[0].includes("Category")) stories.getRange(1,7).setValue("Category");
+  let articles = ss.getSheetByName(CONFIG.ARTICLES_SHEET);
+  if (!articles) articles = ss.insertSheet(CONFIG.ARTICLES_SHEET);
+  if (articles.getLastRow() === 0) articles.appendRow(["Title","Category","Article","Image URL","Image Credit","Image Licence","Status","Published Date"]);
+  ScriptApp.getProjectTriggers().forEach(t => { if (t.getHandlerFunction() === "collectFashionStories") ScriptApp.deleteTrigger(t); });
+  ScriptApp.newTrigger("collectFashionStories").timeBased().everyHours(6).create();
+  Logger.log("TRENDLINE setup completed; existing rows were preserved.");
+}
+function collectFashionStories() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  if (!ss) throw new Error("Spreadsheet connection not found. Open the project from TRENDLINE Editorial.");
+  const sheet = ss.getSheetByName(CONFIG.STORIES_SHEET);
+  if (!sheet) throw new Error("Run setupTrendline first.");
+  if (sheet.getRange(1,7).getValue() !== "Category") sheet.getRange(1,7).setValue("Category");
+  const links = new Set(sheet.getLastRow() > 1 ? sheet.getRange(2,3,sheet.getLastRow()-1,1).getDisplayValues().flat() : []);
+  CONFIG.FEEDS.forEach(feed => {
+    try {
+      const response = UrlFetchApp.fetch(feed.url,{muteHttpExceptions:true,followRedirects:true});
+      if (response.getResponseCode() !== 200) { Logger.log("Feed unavailable: " + feed.category); return; }
+      const xml = XmlService.parse(response.getContentText());
+      const channel = xml.getRootElement().getChild("channel");
+      if (!channel) { Logger.log("Unrecognised feed: " + feed.category); return; }
+      channel.getChildren("item").forEach(item => {
+        const title = item.getChildText("title") || "";
+        const link = item.getChildText("link") || "";
+        const published = item.getChildText("pubDate") || "";
+        const sourceNode = item.getChild("source");
+        const source = sourceNode ? sourceNode.getText() : "Source via Google News";
+        if (!title || !link || links.has(link)) return;
+        sheet.appendRow([title,source,link,published,"Private research lead only. Verify facts and write an original TRENDLINE article.","Research only",feed.category]);
+        links.add(link);
+      });
+    } catch (err) { Logger.log("Feed error for " + feed.category + ": " + err); }
+  });
+  PropertiesService.getScriptProperties().setProperty("TRENDLINE_LAST_COLLECTION",new Date().toISOString());
+  Logger.log("Fashion research collection completed.");
+}
+function doGet(e) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  if (!ss) throw new Error("Spreadsheet connection not found.");
+  const sheet = ss.getSheetByName(CONFIG.ARTICLES_SHEET);
+  let articles = [];
+  if (sheet && sheet.getLastRow() > 1) {
+    const rows = sheet.getDataRange().getDisplayValues();
+    articles = rows.slice(1).filter(r => String(r[6] || "").trim().toLowerCase() === "approved").map(r => ({
+      title:r[0] || "", category:r[1] || "General", article:r[2] || "", imageUrl:r[3] || "",
+      imageCredit:r[4] || "", imageLicence:r[5] || "", publishedDate:r[7] || ""
+    }));
+  }
+  const payload = { articles:articles, lastCollected:PropertiesService.getScriptProperties().getProperty("TRENDLINE_LAST_COLLECTION") || "", generatedAt:new Date().toISOString() };
+  let callback = e && e.parameter && e.parameter.callback ? String(e.parameter.callback).replace(/[^a-zA-Z0-9_$]/g,"") : "";
+  const output = callback ? callback + "(" + JSON.stringify(payload) + ");" : JSON.stringify(payload);
+  return ContentService.createTextOutput(output).setMimeType(callback ? ContentService.MimeType.JAVASCRIPT : ContentService.MimeType.JSON);
+}
+function testTrendline() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  if (!ss) throw new Error("Open this project from TRENDLINE Editorial.");
+  if (!ss.getSheetByName(CONFIG.STORIES_SHEET) || !ss.getSheetByName(CONFIG.ARTICLES_SHEET)) throw new Error("Stories or Articles sheet is missing.");
+  Logger.log("Stories sheet: ready"); Logger.log("Articles sheet: ready"); Logger.log("TRENDLINE test completed.");
+}
