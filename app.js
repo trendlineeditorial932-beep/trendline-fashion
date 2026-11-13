@@ -4,6 +4,8 @@
 
   const body = document.body;
   const currentCategory = (body.dataset.category || 'all').toLowerCase();
+  const params = new URLSearchParams(location.search);
+  const requestedAudience = (params.get('audience') || '').toLowerCase();
   const apiUrl = String(window.TRENDLINE_API_URL || '').trim();
 
   /* MOBILE NAVIGATION */
@@ -33,7 +35,9 @@
   const filename = location.pathname.split('/').pop() || 'index.html';
 
   document.querySelectorAll('.main-nav a').forEach(link => {
-    if (link.getAttribute('href') === filename) {
+    const href = link.getAttribute('href') || '';
+
+    if (href.split('?')[0].split('#')[0] === filename) {
       link.classList.add('active');
     } else {
       link.classList.remove('active');
@@ -116,7 +120,18 @@
       : clean;
   };
 
-  /* CATEGORY MATCHING */
+  /* CATEGORY AND AUDIENCE MATCHING */
+
+  const categoryAliases = {
+    streetwear: ['streetwear', 'streetstyle'],
+    luxury: ['luxury'],
+    sportswear: ['sportswear', 'sportstyle'],
+    casualwear: ['casualwear', 'casual'],
+    formalwear: ['formalwear', 'formal'],
+    sustainable: ['sustainable', 'sustainablefashion'],
+    vintage: ['vintage'],
+    accessories: ['accessories', 'accessory']
+  };
 
   function matchesCategory(article) {
     if (
@@ -140,19 +155,67 @@
 
     const wanted = normalise(currentCategory);
 
-    if (values.includes(wanted)) return true;
+    let categoryMatch = values.includes(wanted);
 
-    if (wanted === 'sustainablefashion') {
-      return values.some(value => value.includes('sustain'));
-    }
+    /* Men and Women landing pages */
 
-    if (wanted === 'teenfashion') {
-      return values.some(value =>
-        value.includes('teen') || value.includes('youth')
+    if (wanted === 'men' || wanted === 'women') {
+      categoryMatch = values.some(value =>
+        wanted === 'men'
+          ? ['men', 'mens', 'male', 'menswear'].includes(value)
+          : ['women', 'womens', 'female', 'womenswear'].includes(value)
       );
     }
 
-    return false;
+    /* Teen Fashion */
+
+    if (wanted === 'teen' || wanted === 'teenfashion') {
+      categoryMatch = values.some(value =>
+        ['teen', 'teens', 'teenfashion', 'youth', 'youthfashion']
+          .includes(value)
+      );
+    }
+
+    /* Celebrity section */
+
+    if (wanted === 'celebrities' || wanted === 'celebrity') {
+      categoryMatch = values.some(value =>
+        ['celebrity', 'celebrities', 'celebrityfashion']
+          .includes(value)
+      );
+    }
+
+    /* Shared category pages */
+
+    if (categoryAliases[wanted]) {
+      categoryMatch = values.some(value =>
+        categoryAliases[wanted].includes(value)
+      );
+    }
+
+    if (!categoryMatch) return false;
+
+    /* Apply Men/Women filter when arriving from those pages */
+
+    if (requestedAudience === 'men' || requestedAudience === 'women') {
+      const audienceValues = [
+        article.audience,
+        article.section,
+        article.tags
+      ]
+        .flatMap(value => Array.isArray(value) ? value : [value])
+        .map(normalise);
+
+      const audienceMatch = audienceValues.some(value =>
+        requestedAudience === 'men'
+          ? ['men', 'mens', 'male', 'menswear'].includes(value)
+          : ['women', 'womens', 'female', 'womenswear'].includes(value)
+      );
+
+      if (!audienceMatch) return false;
+    }
+
+    return true;
   }
 
   /* ARTICLE CARDS */
