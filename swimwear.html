@@ -6,138 +6,313 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Swimwear Edit | TRENDLINE</title>
 <link rel="stylesheet" href="styles.css">
+
+<style>
+.swim-page {
+  background: #f4f1e8;
+  color: #0c0c0d;
+}
+.swim-wrap {
+  width: min(1200px, 92%);
+  margin: auto;
+}
+.swim-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: center;
+  padding: 65px 0;
+}
+.swim-hero h1 {
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  line-height: .85;
+  letter-spacing: -5px;
+  margin: 20px 0;
+}
+.swim-hero h1 span {
+  color: #ff3b30;
+}
+.swim-hero p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 470px;
+}
+.swim-hero img {
+  width: 100%;
+  height: 490px;
+  object-fit: cover;
+  display: block;
+}
+.swim-kicker {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.swim-ticker {
+  background: #d9ff00;
+  color: #0c0c0d;
+  padding: 17px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-align: center;
+}
+.swim-section {
+  padding: 65px 0;
+}
+.swim-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.swim-heading h2 {
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  line-height: .9;
+  letter-spacing: -2px;
+  margin: 12px 0;
+}
+.swim-heading p {
+  max-width: 350px;
+  line-height: 1.6;
+}
+.swim-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.swim-card {
+  background: white;
+  overflow: hidden;
+}
+.swim-card img {
+  width: 100%;
+  height: 430px;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s ease;
+}
+.swim-card:hover img {
+  transform: scale(1.035);
+}
+.swim-card-info {
+  padding: 20px;
+}
+.swim-card-info h3 {
+  font-size: 1.6rem;
+  margin: 9px 0;
+}
+.swim-card-info p {
+  line-height: 1.6;
+  color: #555;
+}
+.swim-dark {
+  background: #0c0c0d;
+  color: #f4f1e8;
+}
+.swim-dark .swim-card {
+  background: #191919;
+  color: #f4f1e8;
+}
+.swim-dark .swim-card-info p {
+  color: #c4c4c4;
+}
+.swim-credit {
+  font-size: 11px;
+  margin-top: 12px;
+  color: #777;
+}
+.swim-dark .swim-credit {
+  color: #aaa;
+}
+.swim-note {
+  border: 1px solid #d9ff00;
+  padding: 28px;
+  margin-top: 35px;
+  line-height: 1.7;
+}
+@media(max-width:700px) {
+  .swim-hero {
+    grid-template-columns: 1fr;
+    padding: 40px 0;
+  }
+  .swim-hero img {
+    height: 350px;
+  }
+  .swim-grid {
+    grid-template-columns: 1fr;
+  }
+  .swim-card img {
+    height: 390px;
+  }
+  .swim-heading {
+    display: block;
+  }
+}
+</style>
 </head>
+
 <body>
+
 <div class="topbar">GLOBAL FASHION DESK / TRENDLINE</div>
 
 <header class="site-header">
-<div class="header-inner">
-<a class="brand" href="index.html">
-<span class="brand-mark">T</span>TRENDLINE
-</a>
-<button class="menu-toggle" aria-label="Open navigation">EXPLORE ☰</button>
-<nav class="main-nav">
-<a href="index.html">Home</a>
-<a href="streetwear.html">Streetwear</a>
-<a href="swimwear.html">Swimwear</a>
-<a href="luxury.html">Luxury</a>
-<a href="sportswear.html">Sportswear</a>
-<a href="lingerie.html">Lingerie</a>
-</nav>
-</div>
+  <div class="header-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">T</span>TRENDLINE
+    </a>
+    <button class="menu-toggle" aria-label="Open navigation">EXPLORE ☰</button>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="streetwear.html">Streetwear</a>
+      <a href="swimwear.html">Swimwear</a>
+      <a href="luxury.html">Luxury</a>
+      <a href="sportswear.html">Sportswear</a>
+      <a href="lingerie.html">Lingerie</a>
+    </nav>
+  </div>
 </header>
 
-<main>
-<section class="wrap category-hero">
-<div class="category-hero-copy">
-<span class="eyebrow">CATEGORY / 02</span>
-<h1>SWIMWEAR<br><span>EDIT.</span></h1>
-<p>Explore contemporary swimwear through colour, design, resort fashion and summer-inspired photography.</p>
-<div class="hero-actions">
-<a class="btn orange" href="#gallery">EXPLORE THE COLLECTION ↘</a>
-</div>
-</div>
-<div class="category-hero-visual">
-<img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=1800&q=90" alt="Summer fashion editorial">
-<span class="image-label">THE SWIMWEAR VISUAL EDIT</span>
-</div>
+<main class="swim-page">
+
+<section class="swim-wrap swim-hero">
+  <div>
+    <div class="swim-kicker">TRENDLINE / CATEGORY 02</div>
+    <h1>SWIM<br><span>WEAR.</span></h1>
+    <p>
+      A visual exploration of swimwear design, two-piece collections,
+      one-piece silhouettes, summer colours and contemporary resort style.
+    </p>
+    <a class="btn orange" href="#two-piece">EXPLORE THE COLLECTION ↘</a>
+  </div>
+
+  <img
+    src="https://images.pexels.com/photos/4284291/pexels-photo-4284291.jpeg?auto=compress&cs=tinysrgb&w=1400"
+    alt="Overhead flat-lay of black swimwear and beach accessories">
 </section>
 
-<div class="ticker">
-<div class="ticker-inner">
-SUMMER ✳ SWIMWEAR ✳ RESORT STYLE ✳ COLOUR ✳ DESIGN ✳ SUNSHINE ✳
-</div>
+<div class="swim-ticker">
+  TWO-PIECE ✳ ONE-PIECE ✳ RESORT STYLE ✳ SUMMER EDIT ✳
 </div>
 
-<section class="wrap section" id="gallery">
-<div class="section-head">
-<div>
-<div class="kicker">01 / THE VISUAL COLLECTION</div>
-<h2 class="section-title">FOUR MOODS.<br>ONE SUMMER.</h2>
-</div>
-<p class="section-intro">A visual exploration of beachwear, resort styling, colours and contemporary swim fashion.</p>
-</div>
+<section class="swim-wrap swim-section" id="two-piece">
+  <div class="swim-heading">
+    <div>
+      <div class="swim-kicker">01 / THE COLLECTION</div>
+      <h2>TWO-PIECE<br>EDIT.</h2>
+    </div>
+    <p>
+      Explore different swimwear colours, prints, textures and
+      coordinated two-piece designs through product-focused photography.
+    </p>
+  </div>
 
-<div class="mini-editorial category-gallery">
+  <div class="swim-grid">
 
-<article class="mini-card">
-<img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1500&q=88" alt="Summer fashion and resort styling">
-<div>
-<div class="kicker">01 / RESORT STYLE</div>
-<h3>Sun-soaked minimalism</h3>
-<p>Clean silhouettes, relaxed styling and effortless summer inspiration.</p>
-</div>
-</article>
+    <article class="swim-card">
+      <img
+        src="https://images.pexels.com/photos/4271767/pexels-photo-4271767.jpeg?auto=compress&cs=tinysrgb&w=1400"
+        alt="Mint swimwear and summer accessories arranged in a flat-lay">
+      <div class="swim-card-info">
+        <div class="swim-kicker">01 / MINT COLLECTION</div>
+        <h3>Fresh in mint</h3>
+        <p>Soft colours and a clean summer-inspired product arrangement.</p>
+        <div class="swim-credit">Photography: alleksana / Pexels</div>
+      </div>
+    </article>
 
-<article class="mini-card">
-<img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1500&q=88" alt="Contemporary summer fashion">
-<div>
-<div class="kicker">02 / COLOUR STORY</div>
-<h3>Colour in motion</h3>
-<p>Explore vibrant palettes, bold combinations and seasonal fashion ideas.</p>
-</div>
-</article>
+    <article class="swim-card">
+      <img
+        src="https://images.pexels.com/photos/4271771/pexels-photo-4271771.jpeg?auto=compress&cs=tinysrgb&w=1400"
+        alt="Blue floral swimwear arranged with summer accessories">
+      <div class="swim-card-info">
+        <div class="swim-kicker">02 / FLORAL COLLECTION</div>
+        <h3>Floral details</h3>
+        <p>Pattern, colour and floral-inspired swimwear styling.</p>
+        <div class="swim-credit">Photography: alleksana / Pexels</div>
+      </div>
+    </article>
 
-<article class="mini-card">
-<img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1500&q=88" alt="Summer editorial portrait">
-<div>
-<div class="kicker">03 / SUMMER EDITORIAL</div>
-<h3>Fresh perspectives</h3>
-<p>Editorial photography inspired by warm weather and modern resort culture.</p>
-</div>
-</article>
-
-<article class="mini-card">
-<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1500&q=88" alt="Tropical beach and turquoise sea">
-<div>
-<div class="kicker">04 / THE DESTINATION</div>
-<h3>Coastal inspiration</h3>
-<p>Discover the colours, landscapes and atmosphere behind summer collections.</p>
-</div>
-</article>
-
-</div>
+  </div>
 </section>
 
-<section class="section dark">
-<div class="wrap">
-<div class="section-head">
-<div>
-<div class="kicker">02 / THE EDITORIAL DESK</div>
-<h2 class="section-title">THE SUMMER<br>REPORT.</h2>
-</div>
-<p class="section-intro">From timeless swimwear design to new resort collections, discover the ideas shaping the season.</p>
-</div>
-<div class="category-tip">
-<strong>THE TRENDLINE VIEW</strong>
-<p>Great swimwear design combines comfort, practical construction, quality materials and personal style.</p>
-</div>
-</div>
+<section class="swim-dark">
+  <div class="swim-wrap swim-section">
+    <div class="swim-heading">
+      <div>
+        <div class="swim-kicker">02 / DESIGN AND DETAILS</div>
+        <h2>THE ONE-PIECE<br>EDIT.</h2>
+      </div>
+      <p>
+        A closer look at classic swimwear designs, simple silhouettes
+        and coordinated beach accessories.
+      </p>
+    </div>
+
+    <div class="swim-grid">
+
+      <article class="swim-card">
+        <img
+          src="https://images.pexels.com/photos/5405652/pexels-photo-5405652.jpeg?auto=compress&cs=tinysrgb&w=1400"
+          alt="Striped swimwear and beach essentials arranged on a marble surface">
+        <div class="swim-card-info">
+          <div class="swim-kicker">03 / STRIPED STYLE</div>
+          <h3>Classic stripes</h3>
+          <p>Graphic patterns and timeless summer styling.</p>
+          <div class="swim-credit">Photography: Taryn Elliott / Pexels</div>
+        </div>
+      </article>
+
+      <article class="swim-card">
+        <img
+          src="https://images.pexels.com/photos/4284291/pexels-photo-4284291.jpeg?auto=compress&cs=tinysrgb&w=1400"
+          alt="Black swimsuit with coordinated beach accessories, overhead view">
+        <div class="swim-card-info">
+          <div class="swim-kicker">04 / MINIMAL COLLECTION</div>
+          <h3>Minimal in black</h3>
+          <p>Simple styling with a monochrome summer palette.</p>
+          <div class="swim-credit">Photography: alleksana / Pexels</div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="swim-note">
+      <div class="swim-kicker">THE TRENDLINE VIEW</div>
+      <h2>DESIGN IS IN THE DETAILS.</h2>
+      Swimwear is more than a seasonal look. Fabric, comfort,
+      construction, colour and practical design all shape a collection.
+    </div>
+  </div>
 </section>
+
 </main>
 
 <footer class="footer">
-<div class="wrap">
-<div class="footer-main">
-<div class="footer-about">
-<a class="brand" href="index.html">TRENDLINE</a>
-<p>Worldwide fashion. Your daily edit.</p>
-</div>
-<nav class="footer-links">
-<a href="index.html">Home</a>
-<a href="streetwear.html">Streetwear</a>
-<a href="swimwear.html">Swimwear</a>
-<a href="luxury.html">Luxury</a>
-<a href="lingerie.html">Lingerie</a>
-</nav>
-</div>
-<div class="footer-bottom">
-<span>© 2026 TRENDLINE</span>
-<span>Photography credits: Unsplash. Verify individual image licences and credits before publication.</span>
-</div>
-</div>
+  <div class="wrap">
+    <div class="footer-main">
+      <div class="footer-about">
+        <a class="brand" href="index.html">TRENDLINE</a>
+        <p>Worldwide fashion. Your daily edit.</p>
+      </div>
+      <nav class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="streetwear.html">Streetwear</a>
+        <a href="swimwear.html">Swimwear</a>
+        <a href="luxury.html">Luxury</a>
+        <a href="lingerie.html">Lingerie</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 TRENDLINE</span>
+      <span>Image credits are listed beneath each photograph.</span>
+    </div>
+  </div>
 </footer>
+
 <script src="config.js"></script>
 <script src="app.js" defer></script>
+
 </body>
 </html>
