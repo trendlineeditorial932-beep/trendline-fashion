@@ -92,8 +92,11 @@
   const detailRoot = document.querySelector('[data-article-detail]');
   const status = document.querySelector('[data-feed-status]');
   const search = document.querySelector('[data-search]');
+  const isHome = currentCategory === 'all';
 
   let articles = [];
+
+  const articleKey = article => article.slug || article.title || '';
 
   const normalise = value =>
     String(value || '')
@@ -262,29 +265,33 @@
       return;
     }
 
-    articleGrid.innerHTML = filtered.map(article => {
+    articleGrid.innerHTML = filtered.map((article, index) => {
       const title = escapeHTML(article.title || 'Untitled story');
       const category = escapeHTML(article.category || 'TRENDLINE');
       const date = escapeHTML(article.publishedDate || 'Latest');
+      const lead = isHome && index === 0 && !keyword;
+      const href = article.slug
+        ? `article.html?slug=${encodeURIComponent(article.slug)}`
+        : `article.html?title=${encodeURIComponent(article.title || '')}`;
+      const summary = article.dek ||
+        article.article || 'An original TRENDLINE editorial story.';
 
       return `
-        <article class="article-card">
+        <article class="article-card${lead ? ' article-lead' : ''}">
           ${cardImage(article)}
 
-          <div class="meta">
-            <span>${category}</span>
-            <span>${date}</span>
+          <div class="article-card-copy">
+            <div class="meta">
+              <span>${lead ? 'THIS WEEK\'S FEATURE · ' : ''}${category}</span>
+              <span>${date}</span>
+            </div>
+
+            <h3>${title}</h3>
+
+            <p>${escapeHTML(excerpt(summary))}</p>
+
+            <a href="${href}">READ THE STORY ↗</a>
           </div>
-
-          <h3>${title}</h3>
-
-          <p>${escapeHTML(
-            excerpt(article.article || 'An original TRENDLINE editorial story.')
-          )}</p>
-
-          <a href="article.html?title=${encodeURIComponent(article.title || '')}">
-            READ THE STORY ↗
-          </a>
         </article>
       `;
     }).join('');
@@ -301,10 +308,14 @@
   function renderDetail() {
     if (!detailRoot) return;
 
-    const wanted = new URLSearchParams(location.search).get('title') || '';
+    const query = new URLSearchParams(location.search);
+    const wantedSlug = query.get('slug') || '';
+    const wanted = query.get('title') || '';
 
     const found = articles.find(article =>
-      String(article.title || '') === wanted
+      wantedSlug
+        ? String(article.slug || '') === wantedSlug
+        : String(article.title || '') === wanted
     );
 
     if (!found) {
@@ -323,10 +334,16 @@
 
     const paragraphs = String(found.article || '')
       .split(/\n{2,}/)
+      .map(paragraph => paragraph.trim())
+      .filter(Boolean)
       .map(paragraph =>
-        `<p>${escapeHTML(paragraph).replace(/\n/g, '<br>')}</p>`
+        paragraph.startsWith('## ')
+          ? `<h2>${escapeHTML(paragraph.slice(3))}</h2>`
+          : `<p>${escapeHTML(paragraph).replace(/\n/g, '<br>')}</p>`
       )
       .join('');
+
+    document.title = `${found.title || 'Article'} | TRENDLINE`;
 
     const imageUrl = String(found.imageUrl || '').trim();
 
@@ -341,6 +358,9 @@
       </div>
 
       <h1>${title}</h1>
+
+      ${found.dek ? `<p class="article-dek">${escapeHTML(found.dek)}</p>` : ''}
+      ${found.author ? `<p class="article-byline">By ${escapeHTML(found.author)}</p>` : ''}
 
       ${image}
 
@@ -361,15 +381,11 @@
 
   /* LOAD GOOGLE SHEETS EDITORIAL FEED */
 
-  function loadFeed() {
+  function loadSheetFeed() {
     if (!articleGrid && !detailRoot) return;
 
-    if (!apiUrl) {
-      if (status) {
-        status.textContent = 'EDITORIAL FEED NOT CONNECTED';
-      }
-      return;
-    }
+    /* Optional extra source; the built-in feed is data/articles.json */
+    if (!apiUrl) return;
 
     if (!/^https:\/\//i.test(apiUrl)) {
       if (status) {
@@ -412,13 +428,9 @@
           ? payload.articles
           : []);
 
-      articles = data;
+      articles = mergeArticles(articles, data);
 
-      if (status) {
-        status.textContent =
-          `LIVE EDITORIAL FEED · ${articles.length} APPROVED STORIES`;
-      }
-
+      setFeedStatus();
       renderCards(search ? search.value : '');
       renderDetail();
       finish(true);
@@ -432,6 +444,182 @@
     document.head.appendChild(script);
   }
 
-  loadFeed();
+  /* BUILT-IN FEED: data/articles.json (weekly, approved by pull request) */
+
+  function mergeArticles(base, extra) {
+    const seen = new Set(base.map(articleKey));
+    return base.concat(extra.filter(article => !seen.has(articleKey(article))));
+  }
+
+  function setFeedStatus() {
+    if (!status) return;
+
+    status.textContent = articles.length
+      ? `${articles.length} ORIGINAL ${articles.length === 1 ? 'STORY' : 'STORIES'} · NEW FEATURE EVERY WEEK`
+      : 'THIS WEEK\'S FEATURE ARRIVES SOON';
+  }
+
+  async function loadLocalFeed() {
+    if (!articleGrid && !detailRoot) return;
+
+    try {
+      const response = await fetch('data/articles.json', { cache: 'no-cache' });
+
+      if (!response.ok) throw new Error(response.status);
+
+      const payload = await response.json();
+      articles = Array.isArray(payload.articles) ? payload.articles : [];
+    } catch (_) {
+      articles = [];
+
+      if (status) status.textContent = 'FEED UNAVAILABLE · TRY AGAIN LATER';
+    }
+
+    if (articles.length || !status || !status.textContent.startsWith('FEED')) {
+      setFeedStatus();
+    }
+
+    renderCards(search ? search.value : '');
+    renderDetail();
+  }
+
+  /* DAILY TRENDS: data/trends.json (refreshed every day) */
+
+  const timeAgo = iso => {
+    const then = Date.parse(iso);
+
+    if (!then) return '';
+
+    const hours = Math.max(0, Math.round((Date.now() - then) / 36e5));
+
+    if (hours < 1) return 'JUST NOW';
+    if (hours < 24) return `${hours}H AGO`;
+
+    return `${Math.round(hours / 24)}D AGO`;
+  };
+
+  async function loadTrends() {
+    if (currentCategory === 'article') return;
+
+    let data;
+
+    try {
+      const response = await fetch('data/trends.json', { cache: 'no-cache' });
+
+      if (!response.ok) throw new Error(response.status);
+
+      data = await response.json();
+    } catch (_) {
+      return;
+    }
+
+    const section = data.sections && data.sections[currentCategory];
+
+    if (!section || !section.items || !section.items.length) return;
+
+    const labels = {
+      men: 'MENSWEAR',
+      women: 'WOMENSWEAR',
+      celebrities: 'CELEBRITY STYLE',
+      teen: 'TEEN FASHION'
+    };
+
+    const label = isHome
+      ? 'FASHION'
+      : (labels[currentCategory] || currentCategory.toUpperCase());
+
+    const updated = data.updated
+      ? new Intl.DateTimeFormat('en-GB', {
+          day: '2-digit', month: 'short', year: 'numeric'
+        }).format(new Date(data.updated)).toUpperCase()
+      : '';
+
+    const words = (section.words || []).map(word =>
+      `<span class="trend-chip">${escapeHTML(word)}</span>`
+    ).join('');
+
+    const list = section.items.map((item, index) => `
+      <li>
+        <span class="trend-num">${String(index + 1).padStart(2, '0')}</span>
+        <a href="${escapeHTML(item.link)}" target="_blank" rel="noopener noreferrer">
+          ${escapeHTML(item.title)}
+          <small>${escapeHTML(item.source)}${item.published ? ' · ' + timeAgo(item.published) : ''}</small>
+        </a>
+      </li>
+    `).join('');
+
+    const block = document.createElement('section');
+    block.className = 'section trends-section';
+    block.id = 'trending';
+    block.innerHTML = `
+      <div class="wrap">
+        <div class="trends-head">
+          <div>
+            <span class="eyebrow">TRENDING NOW / UPDATED DAILY</span>
+            <h2>WHAT'S TRENDING IN ${escapeHTML(label)}<span>.</span></h2>
+          </div>
+          <span class="trends-stamp">UPDATED ${escapeHTML(updated)}</span>
+        </div>
+        ${words ? `<div class="trend-chips">${words}</div>` : ''}
+        <ol class="trend-list">${list}</ol>
+        <p class="trends-note">
+          Headlines link to their original publishers. TRENDLINE does not
+          republish their stories.
+        </p>
+      </div>
+    `;
+
+    const anchor = isHome
+      ? document.getElementById('magazine')
+      : (articleGrid && articleGrid.closest('section'));
+
+    if (anchor && anchor.parentNode) {
+      anchor.parentNode.insertBefore(block, anchor);
+    }
+  }
+
+  /* NEWSLETTER SIGNUP (Buttondown) — shows once a username is set in config.js */
+
+  function addNewsletter() {
+    const user = String(window.TRENDLINE_NEWSLETTER_USER || '')
+      .trim()
+      .replace(/[^a-zA-Z0-9_-]/g, '');
+
+    const footer = document.querySelector('footer.footer, footer.site-footer');
+
+    if (!user || !footer) return;
+
+    const block = document.createElement('section');
+    block.className = 'newsletter-section';
+    block.innerHTML = `
+      <div class="wrap newsletter-inner">
+        <div>
+          <span class="eyebrow">THE WEEKLY EDIT</span>
+          <h2>Get the journal in your inbox<span>.</span></h2>
+          <p>One original feature and the week's trending headlines, every week.</p>
+        </div>
+        <form
+          action="https://buttondown.com/api/emails/embed-subscribe/${user}"
+          method="post"
+          target="popupwindow"
+          class="newsletter-form"
+        >
+          <label class="sr-only" for="nl-email">Email address</label>
+          <input id="nl-email" type="email" name="email" placeholder="you@example.com" required>
+          <button type="submit">SUBSCRIBE ↗</button>
+        </form>
+      </div>
+    `;
+
+    block.querySelector('form').addEventListener('submit', () => {
+      window.open(`https://buttondown.com/${user}`, 'popupwindow');
+    });
+
+    footer.parentNode.insertBefore(block, footer);
+  }
+
+  loadLocalFeed().then(loadSheetFeed);
+  loadTrends();
+  addNewsletter();
 
 })();

@@ -1,0 +1,38 @@
+name: Weekly newsletter
+
+# Runs when an approved article lands on the main branch (i.e. you merged the weekly draft).
+on:
+  push:
+    branches: [main]
+    paths:
+      - data/articles.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  newsletter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Create the newsletter in Buttondown
+        env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+          NEWSLETTER_STATUS: ${{ vars.NEWSLETTER_STATUS }}   # leave unset for "draft"
+        run: python scripts/send_newsletter.py
+
+      - name: Remember what was sent
+        run: |
+          git config user.name "trendline-bot"
+          git config user.email "trendline-bot@users.noreply.github.com"
+          git add data/newsletter_state.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Record newsletter sent"
+            git push
+          fi

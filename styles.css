@@ -986,3 +986,241 @@ input {
     transform: none;
   }
 }
+
+/* ===== DAILY TRENDS, WEEKLY FEATURE, NEWSLETTER ===== */
+
+.trends-section {
+  padding: 80px 0;
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+}
+
+.trends-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.trends-head h2 {
+  font-family: var(--serif);
+  font-size: clamp(30px, 4.5vw, 56px);
+  line-height: 1.08;
+  margin-top: 12px;
+}
+
+.trends-head h2 span {
+  color: var(--burgundy);
+}
+
+.trends-stamp {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.trend-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 26px;
+}
+
+.trend-chip {
+  padding: 8px 14px;
+  border: 1px solid var(--burgundy);
+  border-radius: 30px;
+  color: var(--burgundy);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.trend-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 50px;
+}
+
+.trend-list li {
+  display: flex;
+  gap: 18px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.trend-num {
+  font-family: var(--serif);
+  font-size: 22px;
+  color: var(--burgundy);
+  min-width: 34px;
+}
+
+.trend-list a {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.trend-list a:hover {
+  color: var(--burgundy);
+}
+
+.trend-list small {
+  display: block;
+  margin-top: 6px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.trends-note {
+  margin-top: 20px;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+/* This week's lead feature fills the full row */
+
+.article-card.article-lead {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.article-card.article-lead img {
+  height: 480px;
+  margin-bottom: 0;
+}
+
+.article-card.article-lead h3 {
+  font-size: clamp(30px, 3.6vw, 48px);
+}
+
+.article-card.article-lead p {
+  font-size: 14px;
+}
+
+.article-card.article-lead:not(:has(img)) {
+  grid-template-columns: 1fr;
+}
+
+/* Long-form article page */
+
+.article-dek {
+  font-family: var(--serif);
+  font-size: clamp(18px, 2.4vw, 24px);
+  line-height: 1.5;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.article-byline {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.article-body h2 {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1.25;
+  margin: 46px 0 16px;
+}
+
+/* Newsletter */
+
+.newsletter-section {
+  background: var(--burgundy);
+  color: var(--paper);
+  padding: 70px 0;
+}
+
+.newsletter-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.newsletter-section .eyebrow {
+  color: #e6c0ca;
+}
+
+.newsletter-section h2 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 44px);
+  margin: 12px 0;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 10px;
+  flex: 0 1 460px;
+}
+
+.newsletter-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 15px 18px;
+  border: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.newsletter-form button {
+  padding: 15px 22px;
+  border: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+@media (max-width: 900px) {
+  .trend-list {
+    grid-template-columns: 1fr;
+  }
+
+  .trends-head,
+  .newsletter-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .newsletter-form {
+    width: 100%;
+    flex: none;
+  }
+
+  .article-card.article-lead {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .article-card.article-lead img {
+    height: 75vw;
+    max-height: 420px;
+  }
+}

@@ -1,0 +1,44 @@
+name: Weekly article draft
+
+on:
+  schedule:
+    - cron: "0 3 * * 1"   # Monday 08:30 India time
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Draft the article with Claude
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PR_BODY_FILE: ${{ runner.temp }}/pr_body.md
+        run: python scripts/draft_article.py
+
+      - name: Open a pull request for review
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_BODY_FILE: ${{ runner.temp }}/pr_body.md
+        run: |
+          branch="weekly-article-$(date -u +%Y-%m-%d)"
+          git config user.name "trendline-bot"
+          git config user.email "trendline-bot@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add data/articles.json
+          git commit -m "Draft weekly feature for review"
+          git push -u origin "$branch"
+          gh pr create \
+            --title "Weekly feature draft for review ($(date -u +%d\ %b\ %Y))" \
+            --body-file "$PR_BODY_FILE" \
+            --base "${{ github.event.repository.default_branch }}" \
+            --head "$branch"
