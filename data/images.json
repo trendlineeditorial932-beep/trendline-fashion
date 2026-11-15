@@ -1,0 +1,150 @@
+{
+  "men": {
+    "streetwear": {
+      "url": "https://images.unsplash.com/photo-1634853166008-2c9e90321c92?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Man in a dark hoodie and white sneakers",
+      "credit": "felirbe / Unsplash"
+    },
+    "luxury": {
+      "url": "https://images.unsplash.com/photo-1732842430197-0ecd55fe98ea?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Man in a beige overcoat on a city street",
+      "credit": "GlassesShop / Unsplash"
+    },
+    "sportswear": {
+      "url": "https://images.unsplash.com/photo-1554139844-af2fc8ad3a3a?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Man jogging in black sportswear",
+      "credit": "Florian Kurrasch / Unsplash"
+    },
+    "casualwear": {
+      "url": "https://images.unsplash.com/photo-1618271970480-3ee96bba16be?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Man in a dark tee and blue jeans",
+      "credit": "Ace Maxwell / Unsplash"
+    },
+    "formalwear": {
+      "url": "https://images.unsplash.com/photo-1775181316283-e57d3447184f?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Man in a suit and tie",
+      "credit": "Marlon Schmeiski / Unsplash"
+    },
+    "sustainable": {
+      "url": "https://images.unsplash.com/photo-1709916314093-5bbc88f6ee8c?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Person choosing a shirt from a secondhand rack",
+      "credit": "Nik / Unsplash"
+    },
+    "vintage": {
+      "url": "https://images.unsplash.com/photo-1675442141177-b99b70652416?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Man in a denim jacket and white shirt",
+      "credit": "Farshad Sheikhzadeh / Unsplash"
+    },
+    "accessories": {
+      "url": "https://images.unsplash.com/photo-1674704740401-bd9be1354cce?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Man wearing sunglasses and a watch",
+      "credit": "Marlon Alves / Unsplash"
+    }
+  },
+  "women": {
+    "streetwear": {
+      "url": "https://images.unsplash.com/photo-1589108447715-19b681f5c4a0?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Woman in a blue and white jacket",
+      "credit": "Daria Strategy / Unsplash"
+    },
+    "luxury": {
+      "url": "https://images.unsplash.com/photo-1762740646316-57edde19a0c6?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Woman in an elegant dress",
+      "credit": "alex Roosso / Unsplash"
+    },
+    "sportswear": {
+      "url": "https://images.unsplash.com/photo-1770177264833-3207a54a487f?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Woman in athletic wear and running shoes",
+      "credit": "Daniel Lincoln / Unsplash"
+    },
+    "casualwear": {
+      "url": "https://images.unsplash.com/photo-1753395298691-eb93244d76c1?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Woman in a white shirt and jeans",
+      "credit": "Amin Naderloei / Unsplash"
+    },
+    "formalwear": {
+      "url": "https://images.unsplash.com/photo-1771072426488-87e6bbcc0cf7?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Woman in a tailored blazer",
+      "credit": "sammy swae / Unsplash"
+    },
+    "sustainable": {
+      "url": "https://images.unsplash.com/photo-1759630814559-f9fffe187384?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Woman browsing a thrift store",
+      "credit": "Kiko Camaclang / Unsplash"
+    },
+    "vintage": {
+      "url": "https://images.unsplash.com/photo-1753719734928-ff3d2816b506?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Woman in vintage-inspired clothing",
+      "credit": "FOTOGRAFÍA EDITORIAL / Unsplash"
+    },
+    "accessories": {
+      "url": "https://images.unsplash.com/photo-1777223127412-5871e0022d7a?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Woman wearing sunglasses and jewellery",
+      "credit": "Michael Kyule / Unsplash"
+    }
+  },
+  "teen": {
+    "hero": {
+      "url": "https://images.unsplash.com/photo-1771919364536-cbf77acf749d?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Young people in a streetwear fashion shoot",
+      "credit": "Christian Agbede / Unsplash"
+    },
+    "streetwear": {
+      "url": "https://images.unsplash.com/photo-1606527980052-4d20d40451ac?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Jeans and black-and-white sneakers",
+      "credit": "Emmanuel Olguín / Unsplash"
+    },
+    "casual": {
+      "url": "https://images.unsplash.com/photo-1786048271958-85e968d8a11f?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Young adults leaving a shop with bags",
+      "credit": "sammy swae / Unsplash"
+    },
+    "sportswear": {
+      "url": "https://images.unsplash.com/photo-1779675788305-6abaf1ec9a16?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Pink tracksuit streetwear look",
+      "credit": "ola szkolda / Unsplash"
+    },
+    "vintage": {
+      "url": "https://images.unsplash.com/photo-1709916306474-4de3cd49cf01?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Person holding a jacket on a secondhand rack",
+      "credit": "Nik / Unsplash"
+    },
+    "sustainable": {
+      "url": "https://images.unsplash.com/photo-1606053929013-311c13f97b5f?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Sorting fabric offcuts for reuse",
+      "credit": "Francois Le Nguyen / Unsplash"
+    },
+    "accessories": {
+      "url": "https://images.unsplash.com/photo-1694978417313-5cc891e8aba0?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Young pedestrian with a bag in the city",
+      "credit": "Johannes Plenio / Unsplash"
+    }
+  },
+  "celebrities": {
+    "hero": {
+      "url": "https://images.unsplash.com/photo-1765871420408-5ba82853ae7f?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Model in a sparkling green gown",
+      "credit": "FOTOGRAFÍA EDITORIAL / Unsplash"
+    },
+    "event": {
+      "url": "https://images.unsplash.com/photo-1771072426488-87e6bbcc0cf7?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Model in a tailored blazer, editorial style",
+      "credit": "sammy swae / Unsplash"
+    },
+    "luxury": {
+      "url": "https://images.unsplash.com/photo-1762740646316-57edde19a0c6?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Model in an elegant dress",
+      "credit": "alex Roosso / Unsplash"
+    },
+    "vintage": {
+      "url": "https://images.unsplash.com/photo-1753719734928-ff3d2816b506?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Model in vintage-inspired clothing",
+      "credit": "FOTOGRAFÍA EDITORIAL / Unsplash"
+    },
+    "accessories": {
+      "url": "https://images.unsplash.com/photo-1777223127412-5871e0022d7a?auto=format&fit=crop&w=1500&q=88",
+      "alt": "Model wearing sunglasses and jewellery",
+      "credit": "Michael Kyule / Unsplash"
+    }
+  }
+}

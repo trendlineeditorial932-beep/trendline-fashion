@@ -618,6 +618,26 @@
     footer.parentNode.insertBefore(block, footer);
   }
 
+  /* CATEGORY HERO MATCHES THE AUDIENCE (?audience=men|women) */
+
+  async function matchHeroToAudience() {
+    const heroImg = document.querySelector('.category-hero-visual img');
+
+    if (!heroImg || !['men', 'women'].includes(requestedAudience)) return;
+
+    try {
+      const response = await fetch('data/images.json', { cache: 'no-cache' });
+      const images = await response.json();
+      const entry = images[requestedAudience] && images[requestedAudience][currentCategory];
+
+      if (entry && /^https:\/\//.test(entry.url)) {
+        heroImg.src = entry.url;
+        heroImg.alt = entry.alt;
+      }
+    } catch (_) { /* keep the default photo */ }
+  }
+
+  matchHeroToAudience();
   loadLocalFeed().then(loadSheetFeed);
   loadTrends();
   addNewsletter();

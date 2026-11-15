@@ -18,6 +18,7 @@ from pathlib import Path
 
 OUT = Path(__file__).resolve().parent.parent / "data" / "trends.json"
 PER_SECTION = 8
+PER_SECTION_OVERRIDE = {"celebrities": 12}  # celebrity coverage runs longer
 USER_AGENT = "Mozilla/5.0 (compatible; TrendlineBot/1.0; +https://trendlineeditorial932-beep.github.io/trendline-fashion/)"
 
 # key must match each page's <body data-category="...">
@@ -90,7 +91,7 @@ def norm(title):
     return re.sub(r"[^a-z0-9]", "", title.lower())[:60]
 
 
-def pick(items, seen_global):
+def pick(items, seen_global, limit=PER_SECTION):
     items.sort(key=lambda i: i["published"], reverse=True)
     out, seen_titles, per_source = [], set(), Counter()
     for item in items:
@@ -102,7 +103,7 @@ def pick(items, seen_global):
         seen_titles.add(key)
         per_source[item["source"]] += 1
         out.append(item)
-        if len(out) == PER_SECTION:
+        if len(out) == limit:
             break
     return out
 
@@ -138,7 +139,8 @@ def main():
                 items = []
             if len(items) >= 5:
                 break
-        chosen = pick(items, seen_global if key != "all" else set())
+        chosen = pick(items, seen_global if key != "all" else set(),
+                      PER_SECTION_OVERRIDE.get(key, PER_SECTION))
         if chosen:
             if key != "all":
                 seen_global.update(i["link"] for i in chosen[:3])
