@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
-"""Draft this week's long-form TRENDLINE feature with Claude.
+"""Draft this week's long-form TRENDLINE feature with an AI model (Gemini free tier).
 
-Reads data/trends.json (the headlines the site has been showing), asks Claude to
+Reads data/trends.json (the headlines the site has been showing), asks an AI model to
 write an ORIGINAL magazine feature about the week's themes, and appends it to
 data/articles.json. The GitHub Action puts the change in a pull request, so
 nothing goes live until a person reviews and merges it.
 
-Needs the ANTHROPIC_API_KEY secret. Standard library only.
+Uses Google's Gemini API free tier (no billing needed). Needs the GEMINI_API_KEY secret.
+Standard library only.
 """
 import json
 import os
 import re
 import sys
+import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
@@ -20,7 +22,7 @@ ROOT = Path(__file__).resolve().parent.parent
 TRENDS = ROOT / "data" / "trends.json"
 ARTICLES = ROOT / "data" / "articles.json"
 PR_BODY = Path(os.environ.get("PR_BODY_FILE", ROOT / "pr_body.md"))
-MODEL = os.environ.get("ANTHROPIC_MODEL", "claude-sonnet-5-5")
+MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.8-flash")
 
 CATEGORIES = ["Men", "Women", "Celebrities", "Teen", "Streetwear", "Luxury", "Sportswear",
               "Casualwear", "Formalwear", "Sustainable", "Vintage", "Accessories"]
@@ -72,28 +74,35 @@ def headlines_block(trends):
     return "\n".join(lines).strip()
 
 
-def call_claude(prompt):
-    key = os.environ.get("ANTHROPIC_API_KEY", "").strip()
+def call_model(prompt):
+    key = os.environ.get("GEMINI_API_KEY", "").strip()
     if not key:
-        sys.exit("ANTHROPIC_API_KEY is not set. Add it under Settings > Secrets and variables > Actions.")
+        sys.exit("GEMINI_API_KEY is not set. Add it under Settings > Secrets and variables > Actions.")
     body = json.dumps({
-        "model": MODEL,
-        "max_tokens": 4000,
-        "system": SYSTEM,
-        "messages": [{"role": "user", "content": prompt}],
+        "systemInstruction": {"parts": [{"text": SYSTEM}]},
+        "contents": [{"role": "user", "parts": [{"text": prompt}]}],
+        "generationConfig": {"maxOutputTokens": 6000, "temperature": 0.8},
     }).encode()
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent"
     req = urllib.request.Request(
-        "https://api.anthropic.com/v1/messages", data=body, method="POST",
-        headers={"x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"})
-    with urllib.request.urlopen(req, timeout=300) as resp:
-        data = json.loads(resp.read())
-    return "".join(b.get("text", "") for b in data.get("content", []) if b.get("type") == "text")
+        url, data=body, method="POST",
+        headers={"x-goog-api-key": key, "content-type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=300) as resp:
+            data = json.loads(resp.read())
+    except urllib.error.HTTPError as err:
+        sys.exit(f"Gemini API error: HTTP {err.code} {err.read().decode()[:600]}")
+    try:
+        parts = data["candidates"][0]["content"]["parts"]
+    except (KeyError, IndexError):
+        sys.exit("Gemini returned no text: " + json.dumps(data)[:600])
+    return "".join(p.get("text", "") for p in parts)
 
 
 def parse(text):
     m = re.search(r"TITLE:\s*(.+)\nCATEGORY:\s*(.+)\nDEK:\s*(.+)\n---BODY---\n(.*?)\n---FACTCHECK---\n(.*)", text, re.S)
     if not m:
-        sys.exit("Claude's reply was not in the expected layout:\n" + text[:1500])
+        sys.exit("The model's reply was not in the expected layout:\n" + text[:1500])
     title, category, dek, body, facts = (s.strip() for s in m.groups())
     category = next((c for c in CATEGORIES if c.lower() == category.lower()), "Journal")
     return title.strip('"“”'), category, dek, body, facts
@@ -109,7 +118,7 @@ def main():
     if not block:
         sys.exit("data/trends.json has no headlines yet. Run the Daily trends workflow first.")
 
-    text = call_claude(PROMPT.format(headlines=block, categories=", ".join(CATEGORIES)))
+    text = call_model(PROMPT.format(headlines=block, categories=", ".join(CATEGORIES)))
     title, category, dek, body, facts = parse(text)
 
     words = len(body.split())

@@ -19,9 +19,9 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Draft the article with Claude
+      - name: Draft the article (Gemini free tier)
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           PR_BODY_FILE: ${{ runner.temp }}/pr_body.md
         run: python scripts/draft_article.py
 
