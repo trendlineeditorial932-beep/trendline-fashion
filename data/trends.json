@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-15T12:34:52+00:00",
+  "updated": "2026-11-15T12:46:26+00:00",
   "sections": {
     "all": {
       "items": [
@@ -90,6 +90,12 @@
           "published": "2026-11-14T17:18:36+00:00"
         },
         {
+          "title": "Emma Watson’s Rare Appearance Came With a Vintage Valentino Look",
+          "source": "ELLE",
+          "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQeDdjangzQVNhVW05YU9tT09MSWNUbTVHZ0V6VlVERnNSbjUyYkJCWkdXU0R6LUhQODVoeWxqelE0R1BEMGhLUmRnN3FrVm9vSTdTWlpFeWZpTVQtRTkxM1NXdkJZeXBWS0NTMldsS0lZa2RyTmUtc0RDZnJPSk5nb0t1dGt6bzFvUGd3ZjFlSlZEbGdzVHA4ZXZSc0EyMzJ2RnhJRmlPQVg?oc=5",
+          "published": "2026-11-14T17:01:00+00:00"
+        },
+        {
           "title": "UNIQLO Opens New Store in Thane",
           "source": "Indian Retailer",
           "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOYUtSMXFmc3pCbTlrMnZraEdoRWZzcXZzU1g1NFZVZ3RVNmYwYUk2TWdXRjBINjAxVzFscVBDSE1UR1VaQ1pSQkVJYVRTbkxtaVdjT3g0RV9fWlVfWUtiR2NJVnRYSGs3bE5NdFhxOUg4U2t2UHZiRm43UXBRbnJobURld21xYWJIRXBPYVV3?oc=5",
@@ -106,12 +112,6 @@
           "source": "Inventiva",
           "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOVlhiNU9MeWdlTlpmdmg5RWRhM0JHVjloNHJweUZCZU5VbjZXLXROZWV6T250cExNRG1UNU9LbE9YNUtMWlBPNlZuT1puZ0hVaFQzYkljZWpvZW4ybGc1MWJoZ19hM2hQSjdOeWcwZVdNVGh2T0RYcl8za1luSXFTQ01aTkhyWGs?oc=5",
           "published": "2026-11-14T08:27:25+00:00"
-        },
-        {
-          "title": "Are men ruining cooking?",
-          "source": "British GQ",
-          "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE4tVWk5X0NNR21XNHpTNnJxeUIxakEwcWZLNDJJdzd6VHZwMzVFNVF4WGs5dFN1ZmVaOFZRclg5U3QzWk9qNGVQUm9FRWZ0aVBwU1gzUmdxMmx3X1QwTng0WkNWN2FXdmlkMDFXVS13?oc=5",
-          "published": "2026-11-14T07:00:00+00:00"
         }
       ],
       "words": [
@@ -221,16 +221,40 @@
           "source": "Marie Claire",
           "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOMnJxdnZGZ3liTEtmLXpGcVY0WWZDdXVaQmdRaVU2TUxWTVhxN1RPZUhWVmdFZHlUZC11S3EzMDAtRnI0MW9XZU5YemVIaDRrVzFrNGh3bnJHYVRnSmNMSmNnT0tFcFlYMThRZmFDZjJsNFBWY0J6Qk9XR0Z4WkpBSjhDamlvYnBUU0pnTElB?oc=5",
           "published": "2026-11-14T11:00:00+00:00"
+        },
+        {
+          "title": "Seeing Green on the GQ Men of the Year Red Carpet",
+          "source": "GQ",
+          "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9ISVdMd2prNHg0UERwcEl0c2dleXFBM1dkQ1ljWjlRN21yY1NxXzl5Mkg3NkQ2U05uVUJyQnVTNHFGaTdwcHZCdm4wV2Exbi1SUFdTMjExSGNDUEVHOGIweUNWTnE4VTlmQVhpVWtTUWlJNUxXNm9JLVAxMA?oc=5",
+          "published": "2026-11-13T18:39:21+00:00"
+        },
+        {
+          "title": "Celebrities at Chanel’s MoMA Film Benefit",
+          "source": "Red Carpet Fashion Awards",
+          "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPRlNqbG1aeUtGRmFOMnhRNURma1dsa0dHejNLdnlJSGRyczJmUVV1cENha09QUXdkODlyYm8wbmJtbXBjRjF3SndGb28yUVVLNG80cjdOSm9jTEcydy1XUXBQUWRaUTdwVlV2dnVZeEU3TXlsUWxSOGlUSHZuaHNwYmU1WEFRakFhMlJXZlFSMnhadXRHUXIw?oc=5",
+          "published": "2026-11-13T17:58:41+00:00"
+        },
+        {
+          "title": "The Best Dressed Celebrities at the Vogue Arabia Ball 2026",
+          "source": "Vogue Arabia",
+          "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQYnA1ZVh5bWZwdHh3ekFYbmVpdzlsMmZQNGpqdzZvRmJtN3k3clhxa1BkN3RJQ2Nya0diUEVFTWo3cjFWbzh2NVlSUFB5OW9zQlFkc3MzTldGSmZ3SDJqdkgwQzUwSkNUZmtiRmdBM0xoczFkTUZYWUl2NHd5TlA0TzIwS1J5LVFTNEhF?oc=5",
+          "published": "2026-11-13T17:11:20+00:00"
+        },
+        {
+          "title": "Ana de Armas puts on a show-stopping display in silk date night gown",
+          "source": "HELLO!",
+          "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxObTlHVzFWLWVXUGs1SnN2Z0U2OEZjd19TNm1mNURoTW5sUS1xR2V1WEJvQ3lYaGlqMWFWdzB2dzVNQmN3Z1dpRDdad1pKRVc1elJ1SWJDQ1daYnowVGkzSDdoNWhidzVkYmFMWXZCRV9VcjkyQ1dFRlI5YXVaa1VYc2dVZFJISFhMTU1DMmZ2UDYyb3JEWDFLdlBaaVR6b3JPcGw2OHFCZ0pQUQ?oc=5",
+          "published": "2026-11-13T17:07:21+00:00"
         }
       ],
       "words": [
         "carpet",
-        "gala",
         "celebrity",
+        "gala",
         "baby",
         "ball",
-        "latin",
         "grammy",
+        "latin",
         "awards"
       ]
     },
@@ -465,16 +489,16 @@
     "casualwear": {
       "items": [
         {
+          "title": "I Worked in Fashion for 13 Years—These 15 Pieces From Amazon’s New Arrivals Are on My Fall Wish List, From $19",
+          "source": "Travel + Leisure",
+          "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQTmRoR0VJMzI3YXM2R1p4anVUcmgwNkpaQWpnb25PbWZzaEw3a1h1MjF3cDdaLUVCdTZCeGdsUGhUbFIxTm5CbmlKemJQUmtaUjZBMDZORXgzTFFfRFBueWk2azZ2LVZtNlNrYnMyOWs5eGFTTnkwcWdRYk5tOXdnSGtpSDVfQjg4dm8tRHdCSW1lR1VneTZrczFjM0NFZlZEYWpN?oc=5",
+          "published": "2026-11-15T12:30:00+00:00"
+        },
+        {
           "title": "I’ve Lived on the French Riviera for 20 Years—This Is the 1 Timeless Accessory French Women Always Wear",
           "source": "Travel + Leisure",
           "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOb3BGcGo1T3JQVmpsODJRdUJJMmFYSVVqMnJBN1VxakxqQldNYzA4NE1Md3lQSGhFS29WT1d6bE9iakdlTTdOTWh2cmkxWjRSZHdLSzZKajFqNG9nNmxlZGJKS1BFY0NPYzlWRDU5NUdHMEtsc0pGYVFvMmJoamtpQmhwUXdZLXVWWXJacW5aWHN6Tm5GVVN4elBDZ0pWUEtqUTNGaEtaU2oyUlRlYlliYjB3UGZLcUQyazU4?oc=5",
           "published": "2026-11-15T11:30:00+00:00"
-        },
-        {
-          "title": "These Are the 7 Airport Outfit Trends Travelers Googled Most in 2026—and Where to Shop Them From $20",
-          "source": "Travel + Leisure",
-          "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxONUJxbXZDOGttMm9zcjk1eS14aVhZZFd1a1k1VFRjVk5na3dxcnc5N3pMMGw2ZzY2aUFESm43WlctUFVlTnVpOHhvczRSUXdUVjJwSVdacUJPOTVKX1d4LTdFV2RPQ3MwRWhRakVYOTZ5bkZ6dExZV3drdTV3ajZoMVFTUUJ1MUZFdlNhVEVoaU5Tdw?oc=5",
-          "published": "2026-11-15T10:30:00+00:00"
         },
         {
           "title": "Avneet Kaur Looks Like A Romantic Dream In A Peach Bodycon Dress With Red Rose Prints",
@@ -507,20 +531,20 @@
           "published": "2026-11-14T11:30:00+00:00"
         },
         {
-          "title": "UNIQLO Opens New Store in Thane",
-          "source": "Indian Retailer",
-          "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOYUtSMXFmc3pCbTlrMnZraEdoRWZzcXZzU1g1NFZVZ3RVNmYwYUk2TWdXRjBINjAxVzFscVBDSE1UR1VaQ1pSQkVJYVRTbkxtaVdjT3g0RV9fWlVfWUtiR2NJVnRYSGs3bE5NdFhxOUg4U2t2UHZiRm43UXBRbnJobURld21xYWJIRXBPYVV3?oc=5",
-          "published": "2026-11-14T10:59:25+00:00"
+          "title": "Kate Middleton and Katie Holmes Wore the Anti-Sneakers That Make Any Outfit Look 10x Richer—From $21",
+          "source": "InStyle",
+          "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPMTVHUmNRTDZBaXctcHVWU0tpSDdBWnBIUk05SWp2Y3FZMHM3MEhlUkFCbG1XWW5zX0EtVy1FSHI2VURRYkxlZGFCZ182ZHRPQnd3U09IQTNtR0k3YnoyeFlZOW9vc3gtRk5hUndEdV9sYkNCbWdFQVphTVNMTkt0Rmc2dVA0LUFoZFNURGJ3a2lndXM?oc=5",
+          "published": "2026-11-14T10:15:00+00:00"
         }
       ],
       "words": [
         "winter",
+        "amazon",
+        "fall",
         "outfit",
         "dress",
-        "amazon",
-        "wardrobe",
-        "fall",
-        "travel"
+        "travel",
+        "wardrobe"
       ]
     },
     "formalwear": {
@@ -616,7 +640,8 @@
         }
       ],
       "words": [
-        "sustainable"
+        "sustainable",
+        "cotton"
       ]
     },
     "vintage": {
@@ -632,6 +657,12 @@
           "source": "InStyle",
           "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOWmc2UDZFT0t1R212TmphT0dNRmFkLXFFWmdQNXlVZmFhWjRVTzF1WUJVUWhDZ1VtYkxGQnc0NFlhaTRGWk9tYkFqMVdtZDYwdUdWVmxaNU56b09udHA1THBuTUdPZ0NMQmFRUG5LYkhvNXduNFdBNTZYbWEwWHdjaGxrMTI4bm82Z0E?oc=5",
           "published": "2026-11-15T11:30:00+00:00"
+        },
+        {
+          "title": "Music Nostalgia Is Having a Moment Thanks to ‘KPop Demon Hunters,’ and It’s Bringing Parents and Kids Together",
+          "source": "Parade Magazine",
+          "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNVzMxbjJDeTl1aDlKNHphOW1wbkxMckRVTXhyWUxwUmN5R3BZRjJQLTFpM0xSWFd4eFYyNzhYcjVrZDhMRy04bUFVaHYyNmhBUnNDNHgyMC1OWEFtLTA1bkt5dVJDQ2RWTmphUGpGWmdGcThHYUUwaUFTMDh4c0JSQVY1NEU4RjJRbThfUlI2c1hYS1BWbmU4dzhYTmQzVEJQc0lldDA2NVRxcHlfdUF5VXlsYlU5bUFYT0c0MDVsZGNfZzVRNUxUWm00SzhTOE1zYndweU53?oc=5",
+          "published": "2026-11-15T10:35:00+00:00"
         },
         {
           "title": "Fashion’s Influence Expands Into Interiors With a Focus on Custom Drapery and Timeless Design",
@@ -662,12 +693,6 @@
           "source": "Harper's BAZAAR",
           "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQS3A2SFNoSmdpOGJfcXFOWXhRWjZHUlhKMnIwSGNIQzZzQmtoQk5FQTJWZjFZb29mai04UWc5Y0xyTG5aelI1ZzZyam1PT0RMTlV0YmdDNU5DSFpzQldMZUxNNW0zSHdCWnhoRmxlbzZTTWZuZVFxTXJRd1BhajFKRlFicUJnTUJSOGxRd1RLVDBBcWNZaWtmaXM5SnhsYTZBOFAzU19ucGRJS3R3MTBfbUZiaDI5cTl0VkFnREJFLU10QQ?oc=5",
           "published": "2026-11-14T20:31:00+00:00"
-        },
-        {
-          "title": "Men: Here’s How to Upgrade Your Office Wardrobe With Vintage Clothes",
-          "source": "tovima.com",
-          "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNcmtWazRXaWdweGJoM3U0clBsbkhEMzYxeUlXYkxSVVQxT292Ykc0bEV6c0RPMzk4bk1RNTF6RmlIeVh2c0lmVjcxb0Fqd29FcWNVR3QzWFlTMlIzUlQzWXAyVXFYM1JrNWhQQWJEdHhnZEV5UVBienBhRU9XdWUzQTg2M2tqeUxucVFfOEc0ZS01S1ZFU0FOSEdR?oc=5",
-          "published": "2026-11-14T17:27:16+00:00"
         }
       ],
       "words": [
@@ -683,6 +708,12 @@
           "source": "InStyle",
           "link": "https://news.google.com/rss/articles/CBMickFVX3lxTFBKSUZuZnhHaE5jbFY1WWsweVFybzBjNTN0bW1SZFd5dlV0UkNvdTMtWFlHaEs5b08zeFJnTm45YUdMOFVnSFA2N0NGdko2NXJ3MS0tMC05LXJpekNqdFVXNExFTjdtV3BpUHllQXFBUEhfdw?oc=5",
           "published": "2026-11-15T12:00:00+00:00"
+        },
+        {
+          "title": "These Are the 7 Airport Outfit Trends Travelers Googled Most in 2026—and Where to Shop Them From $20",
+          "source": "Travel + Leisure",
+          "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxONUJxbXZDOGttMm9zcjk1eS14aVhZZFd1a1k1VFRjVk5na3dxcnc5N3pMMGw2ZzY2aUFESm43WlctUFVlTnVpOHhvczRSUXdUVjJwSVdacUJPOTVKX1d4LTdFV2RPQ3MwRWhRakVYOTZ5bkZ6dExZV3drdTV3ajZoMVFTUUJ1MUZFdlNhVEVoaU5Tdw?oc=5",
+          "published": "2026-11-15T10:30:00+00:00"
         },
         {
           "title": "Your ultimate party season style guide, according to a fashion writer",
@@ -719,17 +750,13 @@
           "source": "Yahoo",
           "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxONlNJYUtSVEkyaWRHZW5EZHk5UlJKcEdYRDFhUHA5Y21xUHdZdkpaNlRBVWtoSndUa1V3bVdSX1JTT0ZDNGMtMXRJdldvNkpNdGk3NHJRQW5Gb2FzLXB2cnpUckw0c0tub2RoSUJhWFAwWGFHdUhabDRKZXpMWFRDN0JpdzR1dVVpYjVlcWtfVXV2cXItZ1BiTy1ZSzI?oc=5",
           "published": "2026-11-14T23:15:08+00:00"
-        },
-        {
-          "title": "Velvet Ballet Flats Are The Unlikely Shoe Trend To Try Now",
-          "source": "British Vogue",
-          "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1lNkFpa0ZGVm1CbVJTUnZmX0UyUzREbUZOZ3lHaUdSY3RtRjU2MUpEaFljYkp0dFBmdTlLQUZDSWVRbG5zWEFFU0tBQkxjOTA0WnpFYVdyX21MWkhlVGFFME5qYXNqUHdR?oc=5",
-          "published": "2026-11-14T08:00:00+00:00"
         }
       ],
       "words": [
         "fall",
-        "shoe"
+        "shoe",
+        "winter",
+        "launches"
       ]
     }
   }
